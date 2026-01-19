@@ -9,15 +9,18 @@
   --ink:#111827; --muted:#6b7280; --line:#e5e7eb; --bg:#f5f6f8; --paper:#ffffff;
 }
 *{box-sizing:border-box}
-body{margin:0; font-family: "Noto Sans KR", "Malgun Gothic", "Apple SD Gothic Neo", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+body{margin:0; font-family: "Noto Sans KR","Malgun Gothic","Apple SD Gothic Neo",system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
  color:var(--ink); background:var(--bg); line-height:1.55}
 .container{max-width:980px; margin:28px auto; padding:0 16px}
 .paper{background:var(--paper); border:1px solid var(--line); border-radius:14px; box-shadow:0 10px 26px rgba(0,0,0,.06); overflow:hidden}
-.header{padding:26px 28px 14px 28px; border-bottom:1px solid var(--line)}
+.header{padding:26px 28px 14px 28px; border-bottom:1px solid var(--line); display:flex; gap:18px; align-items:flex-start}
+.h-left{flex:1 1 auto; min-width:0}
+.h-right{flex:0 0 auto}
 .badge{display:inline-block; font-size:12px; letter-spacing:.2px; color:#111827; background:#f3f4f6; border:1px solid var(--line);
  padding:6px 10px; border-radius:999px}
 h1{margin:10px 0 6px 0; font-size:26px; letter-spacing:-.3px}
 .sub{color:var(--muted); font-size:14px}
+.small{font-size:12px; color:var(--muted)}
 .grid{display:grid; grid-template-columns:1fr; gap:14px; padding:18px 28px 26px 28px}
 .section{border:1px solid var(--line); border-radius:12px; padding:14px 16px}
 .section h2{margin:0 0 10px 0; font-size:16px}
@@ -26,10 +29,23 @@ h1{margin:10px 0 6px 0; font-size:26px; letter-spacing:-.3px}
 table{width:100%; border-collapse:collapse; font-size:14px}
 th,td{border-bottom:1px solid var(--line); padding:10px 8px; vertical-align:top}
 th{text-align:left; color:#111827; background:#fafafa; font-weight:650; border-top:1px solid var(--line)}
-.small{font-size:12px; color:var(--muted)}
 .sign{display:flex; justify-content:space-between; align-items:flex-end; gap:12px; margin-top:10px}
 .sign .box{min-width:200px; text-align:right}
 hr.sep{border:0; border-top:1px dashed var(--line); margin:12px 0}
+.photo{
+  width:108px; height:135px;
+  border:1px solid var(--line);
+  border-radius:10px;
+  background:#fafafa;
+  overflow:hidden;
+  display:flex; align-items:center; justify-content:center;
+}
+.photo img{
+  width:100%; height:100%; object-fit:cover; display:block;
+}
+.photo .ph-txt{
+  padding:10px; text-align:center; font-size:12px; color:var(--muted);
+}
 @media (min-width: 860px){
   .grid{grid-template-columns: 1fr 1fr}
   .span2{grid-column:1 / -1}
@@ -45,11 +61,34 @@ hr.sep{border:0; border-top:1px dashed var(--line); margin:12px 0}
 <body>
 <div class="container">
   <div class="paper">
+
+    <!-- 헤더: 왼쪽(정보) + 오른쪽(증명사진) -->
     <div class="header">
-      <span class="badge">공공기관 제출용 · 이력서</span>
-      <h1>정한채</h1>
-      <div class="sub">[주]동양정보시스템 · 대표이사</div>
-      <div class="small" style="margin-top:8px;">※ 본 문서는 제출용 형식에 맞추어 핵심 정보 위주로 정리하였으며, 사실과 다름이 없음을 확인합니다.</div>
+      <div class="h-left">
+        <span class="badge">공공기관 제출용 · 이력서</span>
+        <h1>정한채</h1>
+        <div class="sub">㈜동양정보시스템 · 대표이사</div>
+        <div class="small" style="margin-top:8px;">
+          ※ 본 문서는 제출용 형식에 맞추어 핵심 정보 위주로 정리하였으며, 사실과 다름이 없음을 확인합니다.
+        </div>
+      </div>
+
+      <div class="h-right">
+        <!-- ✅ 증명사진: 같은 폴더에 photo.jpg 업로드 후 src만 맞추면 됩니다 -->
+        <div class="photo" aria-label="증명사진">
+          <!-- 사진 파일이 준비되면 아래 주석을 해제하고 사용하세요 -->
+          <img src="photo.jpg" alt="증명사진(정한채)">
+          <!--
+          <div class="ph-txt">
+            증명사진<br>
+            (photo.jpg)
+          </div>
+          -->
+        </div>
+        <div class="small" style="margin-top:6px; text-align:center;">
+          증명사진
+        </div>
+      </div>
     </div>
 
     <div class="grid">
@@ -61,7 +100,7 @@ hr.sep{border:0; border-top:1px dashed var(--line); margin:12px 0}
           <div class="k">연락처</div><div>010-2533-8221</div>
           <div class="k">이메일</div><div>hcjeong@daum.net</div>
           <div class="k">주소</div><div>경상북도 경산시 선항길 18</div>
-          <div class="k">소속(현)</div><div>[주]동양정보시스템</div>
+          <div class="k">소속(현)</div><div>㈜동양정보시스템</div>
           <div class="k">직위</div><div>전무이사</div>
           <div class="k">대외활동</div><div>비지니스지원단 정보화 전문위원</div>
         </div>
@@ -73,7 +112,7 @@ hr.sep{border:0; border-top:1px dashed var(--line); margin:12px 0}
           <thead><tr><th>학교명</th><th>전공</th><th>학위</th><th>비고</th></tr></thead>
           <tbody>
             <tr><td>대구대학교</td><td>전자정보처리</td><td>석사</td><td></td></tr>
-<tr><td>영남대학교</td><td>전자공학</td><td>학사</td><td></td></tr>
+            <tr><td>영남대학교</td><td>전자공학</td><td>학사</td><td></td></tr>
           </tbody>
         </table>
       </div>
@@ -84,18 +123,18 @@ hr.sep{border:0; border-top:1px dashed var(--line); margin:12px 0}
           <thead><tr><th style="width:28%">자격명(분야)</th><th style="width:16%">발급일자</th><th>발급기관</th><th style="width:22%">비고</th></tr></thead>
           <tbody>
             <tr><td>대한민국명장</td><td>2024-09-09</td><td>고용노동부(대통령)</td><td>정보처리분야</td></tr>
-<tr><td>우수숙련기술자</td><td>2023-09-21</td><td>고용노동부장관</td><td>정보처리분야</td></tr>
-<tr><td>대한민국산업현장교수</td><td>2021-01-01</td><td>고용노동부장관</td><td></td></tr>
-<tr><td>정보처리기사</td><td>1989-06-12</td><td>한국산업인력공단</td><td></td></tr>
-<tr><td>기술평가사</td><td>2024-12-19</td><td>한국기술사업화진흥협회</td><td></td></tr>
-<tr><td>비지니스지원단(전문위원)</td><td>2024-04-04</td><td>대구경북지방중소벤처기업청</td><td></td></tr>
-<tr><td>스마트공장 전문가</td><td>2024-09-09</td><td>대구테크노파크</td><td></td></tr>
-<tr><td>인공지능컨설턴트</td><td>2024-10-17</td><td>알앤디건설팅연구소</td><td></td></tr>
-<tr><td>데이터 큐레이터</td><td>2026-01-01</td><td>한국스마트데이터협회</td><td></td></tr>
-<tr><td>ESG검증평가사</td><td>2023-12-12</td><td>Korea ESG Support Center</td><td></td></tr>
-<tr><td>ISO45001 인증 심사원</td><td>2023-12-23</td><td>Korea ESG Support Center</td><td></td></tr>
-<tr><td>소상공인컨설턴트</td><td>2025-01-10</td><td>소상공인시장진흥공단</td><td></td></tr>
-<tr><td>능력개발사업전문가</td><td>2024-01-01</td><td>한국산업인력공단</td><td></td></tr>
+            <tr><td>우수숙련기술자</td><td>2023-09-21</td><td>고용노동부장관</td><td>정보처리분야</td></tr>
+            <tr><td>대한민국산업현장교수</td><td>2021-01-01</td><td>고용노동부장관</td><td></td></tr>
+            <tr><td>정보처리기사</td><td>1989-06-12</td><td>한국산업인력공단</td><td></td></tr>
+            <tr><td>기술평가사</td><td>2024-12-19</td><td>한국기술사업화진흥협회</td><td></td></tr>
+            <tr><td>비지니스지원단(전문위원)</td><td>2024-04-04</td><td>대구경북지방중소벤처기업청</td><td></td></tr>
+            <tr><td>스마트공장 전문가</td><td>2024-09-09</td><td>대구테크노파크</td><td></td></tr>
+            <tr><td>인공지능컨설턴트</td><td>2024-10-17</td><td>알앤디건설팅연구소</td><td></td></tr>
+            <tr><td>데이터 큐레이터</td><td>2026-01-01</td><td>한국스마트데이터협회</td><td></td></tr>
+            <tr><td>ESG검증평가사</td><td>2023-12-12</td><td>Korea ESG Support Center</td><td></td></tr>
+            <tr><td>ISO45001 인증 심사원</td><td>2023-12-23</td><td>Korea ESG Support Center</td><td></td></tr>
+            <tr><td>소상공인컨설턴트</td><td>2025-01-10</td><td>소상공인시장진흥공단</td><td></td></tr>
+            <tr><td>능력개발사업전문가</td><td>2024-01-01</td><td>한국산업인력공단</td><td></td></tr>
           </tbody>
         </table>
         <div class="small" style="margin-top:8px;">※ 자격·위촉·등록 사항은 제출기관 요청 시 증빙자료로 확인 가능합니다.</div>
@@ -106,12 +145,12 @@ hr.sep{border:0; border-top:1px dashed var(--line); margin:12px 0}
         <table>
           <thead><tr><th style="width:16%">근무기간</th><th style="width:12%">기간</th><th style="width:26%">회사/기관</th><th style="width:14%">직위</th><th>주요업무</th></tr></thead>
           <tbody>
-            <tr><td>2023.04~현재</td><td>2년8개월</td><td>[주]동양정보시스템</td><td>전무이사</td><td>컨설팅/교육</td></tr>
-<tr><td>2022.07~현재</td><td>3년5개월</td><td>비지니스지원단</td><td>전문위원</td><td>정보화</td></tr>
-<tr><td>1999.06~2023.03</td><td>23년10개월</td><td>[주]동양정보시스템</td><td>대표이사</td><td>사업기획 및 제품개발</td></tr>
-<tr><td>1988.02~1999.01</td><td>11년0개월</td><td>[주]한국정보시스템</td><td>SI총괄팀장</td><td>ERP/MES/SCM 개발 및 구축</td></tr>
-<tr><td>1986.02~1988.01</td><td>2년0개월</td><td>한국중천전화산업[주]</td><td>주임</td><td>전산실 운영/SW 개발</td></tr>
-<tr><td>2007.03~2018.02</td><td>11년0개월</td><td>대구대학교</td><td>겸임교수</td><td>소프트웨어공학 관련 강의</td></tr>
+            <tr><td>2023.04~현재</td><td>2년8개월</td><td>㈜동양정보시스템</td><td>전무이사</td><td>컨설팅/교육</td></tr>
+            <tr><td>2022.07~현재</td><td>3년5개월</td><td>비지니스지원단</td><td>전문위원</td><td>정보화</td></tr>
+            <tr><td>1999.06~2023.03</td><td>23년10개월</td><td>㈜동양정보시스템</td><td>대표이사</td><td>사업기획 및 제품개발</td></tr>
+            <tr><td>1988.02~1999.01</td><td>11년0개월</td><td>㈜한국정보시스템</td><td>SI총괄팀장</td><td>ERP/MES/SCM 개발 및 구축</td></tr>
+            <tr><td>1986.02~1988.01</td><td>2년0개월</td><td>한국중천전화산업㈜</td><td>주임</td><td>전산실 운영/SW 개발</td></tr>
+            <tr><td>2007.03~2018.02</td><td>11년0개월</td><td>대구대학교</td><td>겸임교수</td><td>소프트웨어공학 관련 강의</td></tr>
           </tbody>
         </table>
       </div>
@@ -122,22 +161,77 @@ hr.sep{border:0; border-top:1px dashed var(--line); margin:12px 0}
           <thead><tr><th style="width:14%">구분</th><th style="width:18%">기간</th><th>지원내용</th><th style="width:18%">실시기관</th></tr></thead>
           <tbody>
             <tr><td>컨설팅</td><td>2022.01~2024.12</td><td>스마트공장 코디네이트/마이스터/DX멘토</td><td>테크노파크</td></tr>
-<tr><td>대면강의</td><td>2022.10~2024.12</td><td>스마트공장 실무자 교육 심화과정</td><td>테크노파크</td></tr>
-<tr><td>대면강의</td><td>2019.01~2024.12</td><td>스마트제조혁신컨설팅</td><td>테크노파크</td></tr>
-<tr><td>컨설팅</td><td>2022.01~2022.12</td><td>스마트공장 보급확산사업 전문가</td><td>테크노파크</td></tr>
-<tr><td>대면강의</td><td>2022.01~2024.08</td><td>재직자 Off-JT 강의(SW개발자_L3)</td><td>한국폴리텍대학</td></tr>
-<tr><td>대면강의</td><td>2023.01~2024.12</td><td>정보화 아카데미 사업</td><td>대구디지털혁신진흥원</td></tr>
-<tr><td>대면강의</td><td>2022.01~2024.12</td><td>체계적현장훈련(S-OJT) 강의 및 컨설팅</td><td>한국산업인력공단</td></tr>
-<tr><td>컨설팅</td><td>2024.01~2024.12</td><td>소상공인 역량강화 컨설팅</td><td>소상공인시장진흥공단</td></tr>
-<tr><td>컨설팅</td><td>2022.01~2024.12</td><td>비즈니스지원단 기업애로사항 상담(412건)</td><td>중소벤처기업부</td></tr>
-<tr><td>컨설팅</td><td>2023.01~2024.12</td><td>소싱디렉팅 프로그램 멘토링</td><td>테크노파크</td></tr>
-<tr><td>컨설팅</td><td>2022.01~2024.12</td><td>대한민국산업현장교수지원사업</td><td>한국산업인력공단</td></tr>
+            <tr><td>대면강의</td><td>2022.10~2024.12</td><td>스마트공장 실무자 교육 심화과정</td><td>테크노파크</td></tr>
+            <tr><td>대면강의</td><td>2019.01~2024.12</td><td>스마트제조혁신컨설팅</td><td>테크노파크</td></tr>
+            <tr><td>컨설팅</td><td>2022.01~2022.12</td><td>스마트공장 보급확산사업 전문가</td><td>테크노파크</td></tr>
+            <tr><td>대면강의</td><td>2022.01~2024.08</td><td>재직자 Off-JT 강의(SW개발자_L3)</td><td>한국폴리텍대학</td></tr>
+            <tr><td>대면강의</td><td>2023.01~2024.12</td><td>정보화 아카데미 사업</td><td>대구디지털혁신진흥원</td></tr>
+            <tr><td>대면강의</td><td>2022.01~2024.12</td><td>체계적현장훈련(S-OJT) 강의 및 컨설팅</td><td>한국산업인력공단</td></tr>
+            <tr><td>컨설팅</td><td>2024.01~2024.12</td><td>소상공인 역량강화 컨설팅</td><td>소상공인시장진흥공단</td></tr>
+            <tr><td>컨설팅</td><td>2022.01~2024.12</td><td>비즈니스지원단 기업애로사항 상담(412건)</td><td>중소벤처기업부</td></tr>
+            <tr><td>컨설팅</td><td>2023.01~2024.12</td><td>소싱디렉팅 프로그램 멘토링</td><td>테크노파크</td></tr>
+            <tr><td>컨설팅</td><td>2022.01~2024.12</td><td>대한민국산업현장교수지원사업</td><td>한국산업인력공단</td></tr>
           </tbody>
         </table>
       </div>
 
+      <!-- ✅ 특허 섹션 추가 -->
+      <div class="section span2">
+        <h2>6. 특허 등록 및 출원(최근 5년 이내)</h2>
+        <table>
+          <thead>
+            <tr>
+              <th style="width:14%">구분</th>
+              <th>명칭</th>
+              <th style="width:20%">등록/출원번호</th>
+              <th style="width:16%">일자</th>
+              <th style="width:16%">비고</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>출원</td>
+              <td>AI모델링 기반 생존분석을 이용한 원격지 에어콤프레서의 소모품 교환 및 비가동 예측 예지보전 시스템 및 방법</td>
+              <td>10-2025-0168893</td>
+              <td>2025-11-11</td>
+              <td>타사출원</td>
+            </tr>
+            <tr>
+              <td>등록</td>
+              <td>가축사료첨가제제조방법</td>
+              <td>10-2839993</td>
+              <td>2025-07-24</td>
+              <td>자사등록</td>
+            </tr>
+            <tr>
+              <td>등록</td>
+              <td>콤프레셔 모니터링 시스템</td>
+              <td>10-2805699</td>
+              <td>2025-05-07</td>
+              <td>타사등록</td>
+            </tr>
+            <tr>
+              <td>등록</td>
+              <td>토양활성제 및 그 제조방법</td>
+              <td>10-2355298</td>
+              <td>2022-01-20</td>
+              <td>자사등록</td>
+            </tr>
+            <tr>
+              <td>등록</td>
+              <td>바닷물을 이용한 토양활성제 및 그 제조방법</td>
+              <td>10-2337529</td>
+              <td>2021-12-06</td>
+              <td>타사등록</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="small" style="margin-top:8px;">※ 특허 관련 사항은 제출기관 요청 시 등록원부/출원서류 등 증빙자료로 확인 가능합니다.</div>
+      </div>
+
+      <!-- 기존 6번 수상 → 번호만 조정 -->
       <div class="section">
-        <h2>6. 수상 실적</h2>
+        <h2>7. 수상 실적</h2>
         <table>
           <thead><tr><th>수상일자</th><th>훈격</th><th>포상기관</th><th>포상사유</th></tr></thead>
           <tbody>
@@ -147,7 +241,7 @@ hr.sep{border:0; border-top:1px dashed var(--line); margin:12px 0}
       </div>
 
       <div class="section">
-        <h2>7. 확인 및 서명</h2>
+        <h2>8. 확인 및 서명</h2>
         <div class="small">위 기재사항은 사실과 다름이 없음을 확인하며, 제출기관의 요청에 따라 관련 증빙자료를 제출할 수 있습니다.</div>
         <hr class="sep">
         <div class="sign">
